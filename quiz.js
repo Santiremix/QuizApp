@@ -5,7 +5,7 @@ const playAgainBtn = document.getElementById('play-again');
 const _result = document.getElementById('result');
 const _currentScore = document.getElementById('current-question');
 const _totalQuestion = document.getElementById('total-question');
-
+//Hola
 const showScore = document.getElementById('show-score');
 
 const end = document.querySelector('.end');
