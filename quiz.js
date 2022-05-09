@@ -5,7 +5,8 @@ const playAgainBtn = document.getElementById('play-again');
 const _result = document.getElementById('result');
 const _currentScore = document.getElementById('current-question');
 const _totalQuestion = document.getElementById('total-question');
-//Hola
+const restartBtn = document.getElementById('restart');
+
 const showScore = document.getElementById('show-score');
 
 const end = document.querySelector('.end');
@@ -38,6 +39,7 @@ async function loadQuestion() {
 
 // Event listeners
 function eventListeners() {
+  restartBtn.addEventListener('click', restartQuiz);
   checkBtn.addEventListener('click', checkAnswer);
   playAgainBtn.addEventListener('click', restartQuiz);
   showScore.addEventListener('click', showResults);
@@ -134,6 +136,7 @@ function checkCount() {
   askedCount++;
   setCount();
   if (askedCount == totalQuestion) {
+    restartBtn.style.display = 'none';
     playAgainBtn.style.display = 'block';
     showScore.style.display = 'block';
     checkBtn.style.display = 'none';
@@ -149,8 +152,9 @@ function restartQuiz() {
   contador = 1;
   localStorage.clear();
   currentScore = askedCount = 0;
-  playAgainBtn.style.display = 'none';
   checkBtn.style.display = 'block';
+  playAgainBtn.style.display = 'none';
+  restartBtn.style.display = 'none'
   showScore.style.display = 'none';
   // _checkBtn.disabled = false;
   setCount();
@@ -165,6 +169,7 @@ function setCount() {
 /******************************/
 function showResults() {
   end.style.display = 'flex';
+  restartBtn.style.display = 'block'
   headDiv.style.display = 'none';
   bodyDiv.style.display = 'none';
   footDiv.style.display = 'none';
