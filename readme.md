@@ -58,4 +58,4 @@ https://github.com/Vincecoorp21/Instagram-Clone
 - GitHub: [@Santiremix](https://github.com/Santiremix)
 - Github: [@Vincecoorp21](https://github.com/Vincecoorp21)
 
-This project was developed By [Santiago Guevara](https://github.com/Santiremix) [Vicente Barberá - Vince BC -](https://github.com/Vincecoorp21)
+This project was developed By [Santiago Guevara](https://github.com/Santiremix) & [Vicente Barberá - Vince BC -](https://github.com/Vincecoorp21)
