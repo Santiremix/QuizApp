@@ -39,7 +39,7 @@ async function loadQuestion() {
   showQuestion(data.results[0]);
   headDiv.style.display = 'block';
   bodyDiv.style.display = 'block';
-  footDiv.style.display = 'block';
+  footDiv.style.display = 'flex';
   end.style.display = 'none';
 }
 
