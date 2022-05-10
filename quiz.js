@@ -117,12 +117,10 @@ function selectOption() {
     });
   });
 }
-// si la seleccionada tiene la clase selected te la guarda en activeOption y le quita la clase selected option le añades clase selected y options le quitas la clase selected
-//le damos la misma clase a las no seleccionadas y le quitamos la clase selected.
+//// Give the same class to the unselected ones and remove the selected class.
 
 /*************FUNCTION CHECKANSWER**********/
 function checkAnswer() {
-  // _checkBtn.disabled = true;
   if (options.querySelector('.selected')) {
     let selectedAnswer = options.querySelector('.selected span').innerHTML;
     //InnerHtml returns the text content of an element (for saving the li's word)

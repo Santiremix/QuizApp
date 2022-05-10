@@ -26,29 +26,91 @@ _This Project was developed with the following technologies_
 
 ## Challenges
 
-The only JS interaction in this project can be found in the User’s Page, inside the top of the card we can see 3 points, if you press the button a menu will pop up, just like on the original Instagram page.
+We have found several challenges during the project...
+
+1. Import Data from [Open Trivia API]('https://opentdb.com/api.php?amount=10&category=31&difficulty=medium&type=multiple').
+
+In this case we use Fetch & async function to do...You can know more about Fetch in that post from [Dmitry Pavlutin](https://dmitripavlutin.com/javascript-fetch-async-await/)
 
 ```
 # code block
-function myFunction1(){
-document.querySelector(‘.key1’).classList.toggle(‘show’);
-}
+async function loadQuestion() {
+  const APIUrl =
+    'https://opentdb.com/api.php?amount=10&category=31&difficulty=medium&type=multiple';
+  const result = await fetch(`${APIUrl}`);
+  //Starts a request and retuns a promise inside an async function
+  const data = await result.json();
 ```
 
-![foto](assets/Instagram_menu_card.png)
+2. Show Questions Function.
+
+In this section we found 2 problems:
+
+- How to make random answers from de data API
+
+```
+# code block
+//Splice creates a new array with incorrect answers(random) + correct answer
+  optionList.splice(
+    Math.floor(Math.random() * (incorrectAnswers.length + 1)),
+    0,
+    correctAnswer
+  );
+```
+
+- How to print the answers into de <li>
+
+```
+# code block
+options.innerHTML = `${optionList
+    .map((option, index) => `<li> ${index + 1}. <span>${option}</span> </li>`)
+    .join('')}`;
+  selectOption();
+  //With .map we can create a new array with 2 parameters: the answer number and the answer. This returns answer separeted with commas(array), so to solve that we use .join method to convert an Array like a String.
+}
+
+```
+
+3. Check Answer Function.
+
+In this section we need to extract the text form de <li>. In order to achieve this we use the Innertext method.[InnerHTML Documentation W3schools](https://www.w3schools.com/jsref/prop_html_innerhtml.asp)
+
+```
+# code block
+function checkAnswer() {
+  if (options.querySelector('.selected')) {
+    let selectedAnswer = options.querySelector('.selected span').innerHTML;
+    //InnerHtml returns the text content of an element (for saving the li's word)
+```
+
+4. Congrats Function
+
+Shows the screen hits stored in a Local Storage variable
+
+```
+# code block
+
+function congrats() {
+  let puntosFinales = localStorage.getItem('aciertos');
+  if (puntosFinales == 10) {
+    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congratulations, you have reached a PERFECT SCORE!!<b/>`;
+    gifFoot.innerHTML = `<img class="final-img" src="/assets/goku.gif">`;
+
+```
 
 ### Getting Started - Installation
 
 To deploy this project you must clone the repository through the following link:
 
 ```
-https://github.com/Vincecoorp21/Instagram-Clone
+https://github.com/Santiremix/QuizApp
 ```
 
 #### Preview
 
-![foto](assets/Instagram_login_page.png)
-![foto](assets/Instagram_user_page.png)
+![foto](./assets/Loading.png)
+![foto](./assets/Main.png)
+![foto](./assets/Show results.png)
 
 ## Author
 
