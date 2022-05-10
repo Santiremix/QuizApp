@@ -7,6 +7,9 @@ const _currentScore = document.getElementById('current-question');
 const _totalQuestion = document.getElementById('total-question');
 const restartBtn = document.getElementById('restart');
 
+const register = document.querySelector('.register'); // hoooooollaaaaaaa
+const startBtn = document.getElementById('start');
+
 const showScore = document.getElementById('show-score');
 
 const end = document.querySelector('.end');
@@ -31,12 +34,35 @@ let incorrectAnswers = '';
 // Cuando carga HTML se carga function donde carga las preguntas y ejecuta eventlisteners
 
 document.addEventListener('DOMContentLoaded', function () {
+  user()
+  eventListeners()
+});
+//TotalQuestion = 10 || CurrentScore = 0 || Next questions we add some points for both variables
+
+
+//Funcion para introudcir usuario
+
+function user(){
+  headDiv.style.display = 'none';
+  bodyDiv.style.display = 'none';
+  footDiv.style.display = 'none';
+  end.style.display = 'none';
+  register.style.display = 'flex';
+}
+
+function klk(){
+    user()
+    eventListeners()
+}
+
+  function start(){
   loadQuestion();
   eventListeners();
   _totalQuestion.textContent = totalQuestion;
   _currentScore.textContent = currentScore;
-});
-//TotalQuestion = 10 || CurrentScore = 0 || Next questions we add some points for both variables
+  register.style.display = 'none'
+  checkBtn.style.display = 'block';
+}
 
 /*********FUNCTION LOAD QUESTIONS**********/
 
@@ -57,6 +83,7 @@ async function loadQuestion() {
 /************FUNCTION EVENTLISTENERS***********/
 
 function eventListeners() {
+  startBtn.addEventListener('click', start)
   restartBtn.addEventListener('click', restartQuiz);
   checkBtn.addEventListener('click', checkAnswer);
   playAgainBtn.addEventListener('click', restartQuiz);
@@ -121,7 +148,8 @@ function checkAnswer() {
     //en lugar de guardar un botton hemos utilizado un li por ello si queremos guardar la palabra necesitamos poner .innerHTML
     if (selectedAnswer == correctAnswer) {
       //Nos evalua que la "palabra" seleccionada sea la correcta.
-      localStorage.setItem('aciertos', contador++);
+      localStorage.setItem('aciertos', contador+1);
+      contador++
       _result.innerHTML = `<b>Perfect!</b>`;
       _result.style.color = 'green';
     } else {
@@ -147,10 +175,11 @@ function checkCount() {
     playAgainBtn.style.display = 'block';
     showScore.style.display = 'block';
     checkBtn.style.display = 'none';
+    register.style.display = 'none'; //hooooolaaaaaaa
   } else {
     setTimeout(function () {
       loadQuestion();
-    }, 1100);
+    }, 0);
   }
 }
 
@@ -159,13 +188,14 @@ function restartQuiz() {
   contador = 0;
   localStorage.clear();
   currentScore = askedCount = 0;
-  checkBtn.style.display = 'block';
+  register.style.display = 'flex';
+  checkBtn.style.display = 'none';
   playAgainBtn.style.display = 'none';
   restartBtn.style.display = 'none';
   showScore.style.display = 'none';
   // _checkBtn.disabled = false;
   setCount();
-  loadQuestion();
+  klk();
 }
 /**************************/
 //Reinicio de currentScore0
@@ -181,7 +211,9 @@ function showResults() {
   headDiv.style.display = 'none';
   bodyDiv.style.display = 'none';
   footDiv.style.display = 'none';
+  register.style.display = 'none'
   congrats();
+  loadPoints();
 }
 
 /**************FUNCTION CONGRATS*******************/
@@ -198,8 +230,8 @@ function congrats() {
   } else if (puntosFinales > 0) {
     finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points...<br>You should watch more anime...<b/>`;
     gifFoot.innerHTML = `<img class="final-img" src="/assets/sad.gif">`;
-  } else if (puntosFinales == 0) {
-    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points...<br>You should be ashamed.<b/>`;
+  } else{
+    finalPoints.innerHTML = `<b>You literally have no points...<br>You should be ashamed.<b/>`;
     gifFoot.innerHTML = `<img class="final-img" src="/assets/trash.gif">`;
   }
 }
@@ -209,5 +241,14 @@ function congrats() {
 $(window).load(function () {
   setTimeout(function () {
     $('.loader').fadeOut('fast');
-  }, 2000);
+  }, 1500);
 });
+
+// -- Almacenar puntuacion en el LocalStorage -- //
+let userPoints = [];
+
+function loadPoints(){
+  let puntosFinales = localStorage.getItem('aciertos');
+  localStorage.setItem('', JSON.stringify(puntosFinales));
+  console.log(userPoints)
+} 
