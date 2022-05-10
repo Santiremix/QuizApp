@@ -27,14 +27,25 @@ let totalQuestion = 10;
 let contador = 0;
 let incorrectAnswers = '';
 
+/***************************************************/
+// Cuando carga HTML se carga function donde carga las preguntas y ejecuta eventlisteners
+
+document.addEventListener('DOMContentLoaded', function () {
+  loadQuestion();
+  eventListeners();
+  _totalQuestion.textContent = totalQuestion;
+  _currentScore.textContent = currentScore;
+});
+//TotalQuestion = 10 || CurrentScore = 0 || Next questions we add some points for both variables
+
+/*********FUNCTION LOAD QUESTIONS**********/
+
 async function loadQuestion() {
   const APIUrl =
     'https://opentdb.com/api.php?amount=10&category=31&difficulty=medium&type=multiple';
   const result = await fetch(`${APIUrl}`);
   const data = await result.json();
-  // console.log(APIUrl);
-  // console.log(result);
-  console.log(data);
+
   _result.innerHTML = '';
   showQuestion(data.results[0]);
   headDiv.style.display = 'block';
@@ -43,29 +54,16 @@ async function loadQuestion() {
   end.style.display = 'none';
 }
 
+/************FUNCTION EVENTLISTENERS***********/
+
 function eventListeners() {
   restartBtn.addEventListener('click', restartQuiz);
   checkBtn.addEventListener('click', checkAnswer);
   playAgainBtn.addEventListener('click', restartQuiz);
   showScore.addEventListener('click', showResults);
 }
-document.addEventListener('DOMContentLoaded', function () {
-  loadQuestion();
-  eventListeners();
-  _totalQuestion.textContent = totalQuestion;
-  _currentScore.textContent = currentScore;
-});
 
-//LOAD QUESTIONS API*********
-
-// async function loadQuestions() {
-//   const API_URL = 'https://opentdb.com/api.php?amount=10';
-// }
-
-// function showQuestions(res) {
-//   correctAnswer = res.data.results.correct_answer;
-//   console.log(correctAnswer);
-// }
+/*******************FUNCTION SHOWQUESTION*********************************/
 
 function showQuestion(data) {
   correctAnswer = data.correct_answer;
@@ -86,35 +84,36 @@ function showQuestion(data) {
   //JOIN en este caso nos quita las comas de la array porque estamos usando un LI en lugar de botones
 }
 
-//*********FUNCTION SELECT OPTION **********
-
-// function select() {
-//   options.querySelectorAll('li').forEach((option) => {
-//     option.addEventListener('click', selectOne());
-//   });
-// }
-
 /********FUNCTION OPTION SELECTED **********/
 // function selectOne() {
 //   if (options.querySelector('.selected')) {
 //     const activeOption = options.querySelector('.selected');
 //     activeOption.classList.remove('selected');
 //   } else {
-//     console.log(options.classList.add('selected'));
+//     option.classList.add('selected');
 //   }
 // }
+//*********FUNCTION SELECT OPTION **********
+
+// function select() {
+//   options.querySelectorAll('li').forEach((option) {
+//     option.addEventListener('click', selectOne);
+//   });
+//}
 
 function selectOption() {
-  options.querySelectorAll('li').forEach(function (option) {
-    option.addEventListener('click', function () {
+  options.querySelectorAll('li').forEach(function (clicked) {
+    clicked.addEventListener('click', function () {
       if (options.querySelector('.selected')) {
         const activeOption = options.querySelector('.selected');
         activeOption.classList.remove('selected');
       }
-      option.classList.add('selected');
+      clicked.classList.add('selected');
     });
   });
 }
+// si la seleccionada tiene la clase selected te la guarda en activeOption y le quita la clase selected option le añades clase selected y options le quitas la clase selected
+//le damos la misma clase a las no seleccionadas y le quitamos la clase selected.
 
 /*************FUNCTION CHECKANSWER**********/
 function checkAnswer() {
