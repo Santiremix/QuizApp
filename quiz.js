@@ -191,20 +191,16 @@ function congrats() {
   let puntosFinales = localStorage.getItem('aciertos');
   if (puntosFinales == 10) {
     finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congratulations, you have reached a PERFECT SCORE!!<b/>`;
-    gifFoot.innerHTML = `<img src="/assets/naruto.gif">`
-
+    gifFoot.innerHTML = `<img class="final-img" src="/assets/naruto.gif">`;
   } else if (puntosFinales >= 5) {
     finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congrats! Keep it going!<b/>`;
-    gifFoot.innerHTML = `<img src="/assets/naruto.gif">`
-
+    gifFoot.innerHTML = `<img class="final-img" src="/assets/naruto.gif">`;
   } else if (puntosFinales > 0) {
     finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points...<br>You should watch more anime...<b/>`;
-    gifFoot.innerHTML = `<img src="/assets/naruto.gif">`
-
+    gifFoot.innerHTML = `<img class="final-img" src="/assets/naruto.gif">`;
   } else if (puntosFinales == 0) {
     finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points...<br>You should be ashamed.<b/>`;
-    gifFoot.innerHTML = `<img src="/assets/naruto.gif">`
-
+    gifFoot.innerHTML = `<img class="final-img" src="/assets/naruto.gif">`;
   }
 }
 
