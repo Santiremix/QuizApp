@@ -58,7 +58,7 @@ In this section we found 2 problems:
   );
 ```
 
-- How to print the answers into de \\<li>.\\
+- How to print the answers into de li.
 
 ```
 # code block
@@ -73,7 +73,7 @@ options.innerHTML = `${optionList
 
 3. Check Answer Function.
 
-In this section we need to extract the text form de <li>. In order to achieve this we use the Innertext method.[InnerHTML Documentation W3schools](https://www.w3schools.com/jsref/prop_html_innerhtml.asp)
+In this section we need to extract the text form de li. In order to achieve this we use the Innertext method.[InnerHTML Documentation W3schools](https://www.w3schools.com/jsref/prop_html_innerhtml.asp)
 
 ```
 # code block
