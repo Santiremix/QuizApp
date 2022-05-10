@@ -10,6 +10,7 @@ const restartBtn = document.getElementById('restart');
 const showScore = document.getElementById('show-score');
 
 const end = document.querySelector('.end');
+const finalPoints = document.querySelector('.final-points')
 
 const headDiv = document.querySelector('.quiz-head');
 
@@ -139,7 +140,7 @@ function checkAnswer() {
 
 function checkCount() {
   currentScore++;
-  // askedCount++;
+  askedCount++;
   setCount();
   if (askedCount == totalQuestion) {
     restartBtn.style.display = 'none';
@@ -149,7 +150,7 @@ function checkCount() {
   } else {
     setTimeout(function () {
       loadQuestion();
-    }, 1100); //Cambiar//
+    }, 1100);
   }
 }
 
@@ -179,6 +180,26 @@ function showResults() {
   headDiv.style.display = 'none';
   bodyDiv.style.display = 'none';
   footDiv.style.display = 'none';
+  congrats();
+}
+
+function congrats(){
+  let puntosFinales = localStorage.getItem('aciertos');
+  if (puntosFinales == 10){
+    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congratulations, you have reached a PERFECT SCORE!!<b/>`;
+  }
+  else if (puntosFinales >= 5){
+    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congrats! Keep it going!<b/>`;
+  }
+  else if(puntosFinales > 0){
+    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points...<br>You should watch more anime...<b/>`;
+  }
+  else if(puntosFinales == 0){
+    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points...<br>You should be ashamed.<b/>`;
+  }
+  else{
+    console.log('hola')
+  }
 }
 
 //------------- Prueba loading -------------//
