@@ -46,7 +46,7 @@ async function loadQuestion() {
 
 In this section we found 2 problems:
 
-- How to make random answers from de data API
+- How to make random answers from de data API.
 
 ```
 # code block
@@ -58,7 +58,7 @@ In this section we found 2 problems:
   );
 ```
 
-- How to print the answers into de <li>
+- How to print the answers into de \\<li>.\\
 
 ```
 # code block
@@ -110,7 +110,7 @@ https://github.com/Santiremix/QuizApp
 
 ![foto](./assets/Loading.png)
 ![foto](./assets/Main.png)
-![foto](./assets/Show results.png)
+![foto](./assets/Show_results.png)
 
 ## Author
 
