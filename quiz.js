@@ -7,9 +7,6 @@ const _currentScore = document.getElementById('current-question');
 const _totalQuestion = document.getElementById('total-question');
 const restartBtn = document.getElementById('restart');
 
-const register = document.querySelector('.register'); // hoooooollaaaaaaa
-const startBtn = document.getElementById('start');
-
 const showScore = document.getElementById('show-score');
 
 const end = document.querySelector('.end');
@@ -34,35 +31,12 @@ let incorrectAnswers = '';
 // Cuando carga HTML se carga function donde carga las preguntas y ejecuta eventlisteners
 
 document.addEventListener('DOMContentLoaded', function () {
-  user()
-  eventListeners()
-});
-//TotalQuestion = 10 || CurrentScore = 0 || Next questions we add some points for both variables
-
-
-//Funcion para introudcir usuario
-
-function user(){
-  headDiv.style.display = 'none';
-  bodyDiv.style.display = 'none';
-  footDiv.style.display = 'none';
-  end.style.display = 'none';
-  register.style.display = 'flex';
-}
-
-function klk(){
-    user()
-    eventListeners()
-}
-
-  function start(){
   loadQuestion();
   eventListeners();
   _totalQuestion.textContent = totalQuestion;
   _currentScore.textContent = currentScore;
-  register.style.display = 'none'
-  checkBtn.style.display = 'block';
-}
+});
+//TotalQuestion = 10 || CurrentScore = 0 || Next questions we add some points for both variables
 
 /*********FUNCTION LOAD QUESTIONS**********/
 
@@ -83,7 +57,6 @@ async function loadQuestion() {
 /************FUNCTION EVENTLISTENERS***********/
 
 function eventListeners() {
-  startBtn.addEventListener('click', start)
   restartBtn.addEventListener('click', restartQuiz);
   checkBtn.addEventListener('click', checkAnswer);
   playAgainBtn.addEventListener('click', restartQuiz);
@@ -104,7 +77,9 @@ function showQuestion(data) {
     correctAnswer
   );
   question.innerHTML = `${data.question}<br><span class="category">${data.category}</span>`;
-  options.innerHTML = `${optionList.map((option, index) => `<li> ${index + 1}. <span>${option}</span> </li>`).join('')}`;
+  options.innerHTML = `${optionList
+    .map((option, index) => `<li> ${index + 1}. <span>${option}</span> </li>`)
+    .join('')}`;
   selectOption();
   //JOIN en este caso nos quita las comas de la array porque estamos usando un LI en lugar de botones. Para que aparezcan los "Botones/LI" sin comas entre ellos.
 }
@@ -148,8 +123,7 @@ function checkAnswer() {
     //en lugar de guardar un botton hemos utilizado un li por ello si queremos guardar la palabra necesitamos poner .innerHTML
     if (selectedAnswer == correctAnswer) {
       //Nos evalua que la "palabra" seleccionada sea la correcta.
-      localStorage.setItem('aciertos', contador+1);
-      contador++
+      localStorage.setItem('aciertos', contador++);
       _result.innerHTML = `<b>Perfect!</b>`;
       _result.style.color = 'green';
     } else {
@@ -175,11 +149,10 @@ function checkCount() {
     playAgainBtn.style.display = 'block';
     showScore.style.display = 'block';
     checkBtn.style.display = 'none';
-    register.style.display = 'none'; //hooooolaaaaaaa
   } else {
     setTimeout(function () {
       loadQuestion();
-    }, 0);
+    }, 1100);
   }
 }
 
@@ -188,14 +161,13 @@ function restartQuiz() {
   contador = 0;
   localStorage.clear();
   currentScore = askedCount = 0;
-  register.style.display = 'flex';
-  checkBtn.style.display = 'none';
+  checkBtn.style.display = 'block';
   playAgainBtn.style.display = 'none';
   restartBtn.style.display = 'none';
   showScore.style.display = 'none';
   // _checkBtn.disabled = false;
   setCount();
-  klk();
+  loadQuestion();
 }
 /**************************/
 //Reinicio de currentScore0
@@ -211,9 +183,7 @@ function showResults() {
   headDiv.style.display = 'none';
   bodyDiv.style.display = 'none';
   footDiv.style.display = 'none';
-  register.style.display = 'none'
   congrats();
-  loadPoints();
 }
 
 /**************FUNCTION CONGRATS*******************/
@@ -221,8 +191,8 @@ function showResults() {
 
 function congrats() {
   let puntosFinales = localStorage.getItem('aciertos');
-  if (puntosFinales >= 8) {
-    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congratulations, you have reached an AMAZING SCORE!!<b/>`;
+  if (puntosFinales == 10) {
+    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congratulations, you have reached a PERFECT SCORE!!<b/>`;
     gifFoot.innerHTML = `<img class="final-img" src="/assets/goku.gif">`;
   } else if (puntosFinales >= 5) {
     finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congrats! Keep it going!<b/>`;
@@ -230,8 +200,8 @@ function congrats() {
   } else if (puntosFinales > 0) {
     finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points...<br>You should watch more anime...<b/>`;
     gifFoot.innerHTML = `<img class="final-img" src="/assets/sad.gif">`;
-  } else{
-    finalPoints.innerHTML = `<b>You literally have no points...<br>You should be ashamed.<b/>`;
+  } else if (puntosFinales == 0) {
+    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points...<br>You should be ashamed.<b/>`;
     gifFoot.innerHTML = `<img class="final-img" src="/assets/trash.gif">`;
   }
 }
@@ -241,14 +211,5 @@ function congrats() {
 $(window).load(function () {
   setTimeout(function () {
     $('.loader').fadeOut('fast');
-  }, 1500);
+  }, 2000);
 });
-
-// -- Almacenar puntuacion en el LocalStorage -- //
-let userPoints = [];
-
-function loadPoints(){
-  let puntosFinales = localStorage.getItem('aciertos');
-  localStorage.setItem('', JSON.stringify(puntosFinales));
-  console.log(userPoints)
-} 
