@@ -122,10 +122,11 @@ function checkAnswer() {
     let selectedAnswer = options.querySelector('.selected span').innerHTML;
     if (selectedAnswer == correctAnswer) {
       localStorage.setItem('aciertos', contador++);
-      currentScore++;
-      _result.innerHTML = `<p>Correct Answer!</p>`;
+      _result.innerHTML = `<b>Perfect!</b>`;
+      _result.style.color = 'green';
     } else {
-      _result.innerHTML = `<p>Incorrect Answer!</p>`;
+      _result.innerHTML = `<b>Wrong Answer!<b/>`;
+      _result.style.color = 'red';
     }
     checkCount();
   } else {
@@ -137,7 +138,8 @@ function checkAnswer() {
 /************************************************/
 
 function checkCount() {
-  askedCount++;
+  currentScore++;
+  // askedCount++;
   setCount();
   if (askedCount == totalQuestion) {
     restartBtn.style.display = 'none';
@@ -147,7 +149,7 @@ function checkCount() {
   } else {
     setTimeout(function () {
       loadQuestion();
-    }, 0); //Cambiar//
+    }, 1100); //Cambiar//
   }
 }
 
@@ -166,8 +168,8 @@ function restartQuiz() {
 }
 /**************************/
 function setCount() {
-  _totalQuestion.textContent = totalQuestion;
-  _currentScore.textContent = currentScore;
+  _totalQuestion.textContent = totalQuestion; //10
+  _currentScore.textContent = currentScore; //0
 }
 
 /******************************/
