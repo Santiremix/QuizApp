@@ -24,7 +24,7 @@ let correctAnswer = '';
 let currentScore = 0;
 let askedCount = 0;
 let totalQuestion = 10;
-let contador = 1;
+let contador = 0;
 let incorrectAnswers = '';
 
 async function loadQuestion() {
@@ -39,7 +39,7 @@ async function loadQuestion() {
   showQuestion(data.results[0]);
   headDiv.style.display = 'block';
   bodyDiv.style.display = 'block';
-  footDiv.style.display = 'block';
+  footDiv.style.display = 'flex';
   end.style.display = 'none';
 }
 
@@ -122,7 +122,8 @@ function checkAnswer() {
   if (options.querySelector('.selected')) {
     let selectedAnswer = options.querySelector('.selected span').innerHTML;
     if (selectedAnswer == correctAnswer) {
-      localStorage.setItem('aciertos', contador++);
+      localStorage.setItem('aciertos', contador+1);
+      contador++;
       _result.innerHTML = `<b>Perfect!</b>`;
       _result.style.color = 'green';
     } else {
@@ -156,7 +157,7 @@ function checkCount() {
 
 /*********RESTART****************/
 function restartQuiz() {
-  contador = 1;
+  contador = 0;
   localStorage.clear();
   currentScore = askedCount = 0;
   checkBtn.style.display = 'block';
