@@ -77,9 +77,7 @@ function showQuestion(data) {
     correctAnswer
   );
   question.innerHTML = `${data.question}<br><span class="category">${data.category}</span>`;
-  options.innerHTML = `${optionList
-    .map((option, index) => `<li> ${index + 1}. <span>${option}</span> </li>`)
-    .join('')}`;
+  options.innerHTML = `${optionList.map((option, index) => `<li> ${index + 1}. <span>${option}</span> </li>`).join('')}`;
   selectOption();
   //JOIN en este caso nos quita las comas de la array porque estamos usando un LI en lugar de botones
 }
@@ -191,8 +189,8 @@ function showResults() {
 
 function congrats() {
   let puntosFinales = localStorage.getItem('aciertos');
-  if (puntosFinales == 10) {
-    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congratulations, you have reached a PERFECT SCORE!!<b/>`;
+  if (puntosFinales >= 8) {
+    finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congratulations, you have reached an AMAZING SCORE!!<b/>`;
     gifFoot.innerHTML = `<img class="final-img" src="/assets/goku.gif">`;
   } else if (puntosFinales >= 5) {
     finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points!<br>Congrats! Keep it going!<b/>`;
