@@ -38,10 +38,8 @@ async function loadQuestion() {
   bodyDiv.style.display = 'block';
   footDiv.style.display = 'block';
   end.style.display = 'none';
-
 }
 
-// Event listeners
 function eventListeners() {
   restartBtn.addEventListener('click', restartQuiz);
   checkBtn.addEventListener('click', checkAnswer);
@@ -158,7 +156,7 @@ function restartQuiz() {
   currentScore = askedCount = 0;
   checkBtn.style.display = 'block';
   playAgainBtn.style.display = 'none';
-  restartBtn.style.display = 'none'
+  restartBtn.style.display = 'none';
   showScore.style.display = 'none';
   // _checkBtn.disabled = false;
   setCount();
@@ -173,7 +171,7 @@ function setCount() {
 /******************************/
 function showResults() {
   end.style.display = 'flex';
-  restartBtn.style.display = 'block'
+  restartBtn.style.display = 'block';
   headDiv.style.display = 'none';
   bodyDiv.style.display = 'none';
   footDiv.style.display = 'none';
