@@ -44,14 +44,18 @@ async function loadQuestion() {
   const APIUrl =
     'https://opentdb.com/api.php?amount=10&category=31&difficulty=medium&type=multiple';
   const result = await fetch(`${APIUrl}`);
+  //Starts a request and retuns a promise inside an async function
   const data = await result.json();
-
+  //Extract the JSON object and save in data
   _result.innerHTML = '';
-  showQuestion(data.results[0]);
+  //Puts empty the string behind the answer
   headDiv.style.display = 'block';
   bodyDiv.style.display = 'block';
   footDiv.style.display = 'flex';
   end.style.display = 'none';
+  showQuestion(data.results[0]);
+  //data.results[0] --> We have selected Manga Category, data.results shows questions of any category
+  //console.log(data.results[0]);
 }
 
 /************FUNCTION EVENTLISTENERS***********/
@@ -71,6 +75,7 @@ function showQuestion(data) {
   incorrectAnswers = data.incorrect_answers;
   //console.log(incorrectAnswers);
   let optionList = incorrectAnswers;
+  //Splice creates a new array with incorrect answers(random) + correct answer
   optionList.splice(
     Math.floor(Math.random() * (incorrectAnswers.length + 1)),
     0,
@@ -81,7 +86,7 @@ function showQuestion(data) {
     .map((option, index) => `<li> ${index + 1}. <span>${option}</span> </li>`)
     .join('')}`;
   selectOption();
-  //JOIN en este caso nos quita las comas de la array porque estamos usando un LI en lugar de botones. Para que aparezcan los "Botones/LI" sin comas entre ellos.
+  //With .map we can create a new array with 2 parameters: the answer number and the answer. This returns answer separeted with commas(array), so to solve that we use .join method to convert an Array like a String.
 }
 
 /********FUNCTION OPTION SELECTED **********/
@@ -120,9 +125,8 @@ function checkAnswer() {
   // _checkBtn.disabled = true;
   if (options.querySelector('.selected')) {
     let selectedAnswer = options.querySelector('.selected span').innerHTML;
-    //en lugar de guardar un botton hemos utilizado un li por ello si queremos guardar la palabra necesitamos poner .innerHTML
+    //InnerHtml returns the text content of an element (for saving the li's word)
     if (selectedAnswer == correctAnswer) {
-      //Nos evalua que la "palabra" seleccionada sea la correcta.
       localStorage.setItem('aciertos', contador++);
       _result.innerHTML = `<b>Perfect!</b>`;
       _result.style.color = 'green';
@@ -132,13 +136,13 @@ function checkAnswer() {
     }
     checkCount();
   } else {
-    // Si no seleccionas nada...
+    // If any option is selected
     _result.innerHTML = `<p>Please select an option!</p>`;
     // _checkBtn.disabled = false;
   }
 }
 
-/************************************************/
+/**************CHECKCOUNT**********************************/
 
 function checkCount() {
   currentScore++;
@@ -169,14 +173,14 @@ function restartQuiz() {
   setCount();
   loadQuestion();
 }
-/**************************/
-//Reinicio de currentScore0
+/*************CURRENT SCORE RESTART*************/
+
 function setCount() {
   _totalQuestion.textContent = totalQuestion; //10
   _currentScore.textContent = currentScore; //0
 }
 
-/******************************/
+/**************SHOWRESULTS****************/
 function showResults() {
   end.style.display = 'flex';
   restartBtn.style.display = 'block';
@@ -206,7 +210,7 @@ function congrats() {
   }
 }
 
-//------------- Prueba loading -------------//
+//------------- LOADING GIF -------------//
 
 $(window).load(function () {
   setTimeout(function () {
