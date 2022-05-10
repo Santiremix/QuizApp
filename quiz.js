@@ -126,6 +126,7 @@ function checkAnswer() {
   if (options.querySelector('.selected')) {
     let selectedAnswer = options.querySelector('.selected span').innerHTML;
     //InnerHtml returns the text content of an element (for saving the li's word)
+    // Correct Answer = data.correct_answer
     if (selectedAnswer == correctAnswer) {
       localStorage.setItem('aciertos', contador++);
       _result.innerHTML = `<b>Perfect!</b>`;
