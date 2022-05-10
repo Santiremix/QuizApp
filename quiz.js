@@ -33,8 +33,12 @@ async function loadQuestion() {
   // console.log(result);
   console.log(data);
   _result.innerHTML = '';
-  end.style.display = 'none';
   showQuestion(data.results[0]);
+  headDiv.style.display = 'block';
+  bodyDiv.style.display = 'block';
+  footDiv.style.display = 'block';
+  end.style.display = 'none';
+
 }
 
 // Event listeners
