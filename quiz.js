@@ -120,9 +120,10 @@ function checkAnswer() {
   // _checkBtn.disabled = true;
   if (options.querySelector('.selected')) {
     let selectedAnswer = options.querySelector('.selected span').innerHTML;
+    //en lugar de guardar un botton hemos utilizado un li por ello si queremos guardar la palabra necesitamos poner .innerHTML
     if (selectedAnswer == correctAnswer) {
-      localStorage.setItem('aciertos', contador+1);
-      contador++;
+      //Nos evalua que la "palabra" seleccionada sea la correcta.
+      localStorage.setItem('aciertos', contador++);
       _result.innerHTML = `<b>Perfect!</b>`;
       _result.style.color = 'green';
     } else {
@@ -131,6 +132,7 @@ function checkAnswer() {
     }
     checkCount();
   } else {
+    // Si no seleccionas nada...
     _result.innerHTML = `<p>Please select an option!</p>`;
     // _checkBtn.disabled = false;
   }
@@ -168,6 +170,7 @@ function restartQuiz() {
   loadQuestion();
 }
 /**************************/
+//Reinicio de currentScore0
 function setCount() {
   _totalQuestion.textContent = totalQuestion; //10
   _currentScore.textContent = currentScore; //0
