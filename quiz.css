@@ -32,7 +32,7 @@ body {
 .title {
   text-align: center;
   font-size: 2rem;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.2rem;
   margin-top: 20px;
 }
 .title::first-letter {
