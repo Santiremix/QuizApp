@@ -32,6 +32,13 @@ body {
 .title {
   text-align: center;
   font-size: 2rem;
+  letter-spacing: 0.5rem;
+  margin-top: 20px;
+}
+.title::first-letter {
+  color: var(--light-purple-color);
+  font-size: 3rem;
+  text-decoration-line: underline;
 }
 .score {
   text-align: right;
@@ -85,7 +92,7 @@ body {
   border: 3px solid var(--light-purple-color);
   background-color: var(--light-purple-color);
   color: var(--light-color);
-  box-shadow: 0 4px 0 0 #6c4298;
+  box-shadow: 0 4px 0 0 #c0d1c2;
   transition: var(--transition);
 }
 .quiz-options li:hover {
