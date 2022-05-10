@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   _totalQuestion.textContent = totalQuestion;
   _currentScore.textContent = currentScore;
 });
-//TotalQuestion = 10 || CurrentScore = 0 || Next questions we add some points for both variables
+//TotalQuestion = 10 || CurrentScore = 0 || Next questions we add some points for both variables
 
 /*********FUNCTION LOAD QUESTIONS**********/
 
