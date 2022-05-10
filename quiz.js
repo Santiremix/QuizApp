@@ -20,7 +20,7 @@ const footDiv = document.querySelector('.quiz-foot');
 
 const gifFoot = document.querySelector('.gif');
 
-let correctAnswer = '';
+let correctAnswer;
 let currentScore = 0;
 let askedCount = 0;
 let totalQuestion = 10;
@@ -69,7 +69,7 @@ function showQuestion(data) {
   correctAnswer = data.correct_answer;
   //console.log(correctAnswer);
   incorrectAnswers = data.incorrect_answers;
-  console.log(incorrectAnswers);
+  //console.log(incorrectAnswers);
   let optionList = incorrectAnswers;
   optionList.splice(
     Math.floor(Math.random() * (incorrectAnswers.length + 1)),
@@ -81,7 +81,7 @@ function showQuestion(data) {
     .map((option, index) => `<li> ${index + 1}. <span>${option}</span> </li>`)
     .join('')}`;
   selectOption();
-  //JOIN en este caso nos quita las comas de la array porque estamos usando un LI en lugar de botones
+  //JOIN en este caso nos quita las comas de la array porque estamos usando un LI en lugar de botones. Para que aparezcan los "Botones/LI" sin comas entre ellos.
 }
 
 /********FUNCTION OPTION SELECTED **********/
