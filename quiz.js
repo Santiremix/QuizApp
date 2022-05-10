@@ -197,9 +197,6 @@ function congrats(){
   else if(puntosFinales == 0){
     finalPoints.innerHTML = `<b>You have a final score of ${puntosFinales} points...<br>You should be ashamed.<b/>`;
   }
-  else{
-    console.log('hola')
-  }
 }
 
 //------------- Prueba loading -------------//
