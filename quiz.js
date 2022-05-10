@@ -178,3 +178,11 @@ function showResults() {
   bodyDiv.style.display = 'none';
   footDiv.style.display = 'none';
 }
+
+//------------- Prueba loading -------------//
+
+$(window).load(function() {
+  setTimeout(function () {
+    $(".loader").fadeOut('fast');
+  }, 2000);
+});
