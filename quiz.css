@@ -138,7 +138,7 @@ body {
 }
 /* El selected se alñadira en js */
 .selected {
-  background-color: var(--grey-color) !important;
+  background-color: green !important;
   color: var(--dark-color) !important;
   border-color: var(--grey-color) !important;
 }
