@@ -44,8 +44,10 @@ async function loadQuestion() {
   const APIUrl =
     'https://opentdb.com/api.php?amount=10&category=31&difficulty=medium&type=multiple';
   const result = await fetch(`${APIUrl}`);
+  console.log(result)
   //Starts a request and retuns a promise inside an async function
   const data = await result.json();
+  console.log(data)
   //Extract the JSON object and save in data
   _result.innerHTML = '';
   //Puts empty the string behind the answer
@@ -54,6 +56,7 @@ async function loadQuestion() {
   footDiv.style.display = 'flex';
   end.style.display = 'none';
   showQuestion(data.results[0]);
+  console.log(data.results)
   //data.results[0] --> We have selected Manga Category, data.results shows questions of any category
   //console.log(data.results[0]);
 }
