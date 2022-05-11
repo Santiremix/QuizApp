@@ -112,12 +112,12 @@ function showQuestion(data) {
 function selectOption() {
   options.querySelectorAll('li').forEach(function (clicked) {
     clicked.addEventListener('click', function () {
-      if (options.querySelector('.selected')) {
+      if (options.querySelector('.selected')) { //Si hay algun li selected se le quita la clase
         const activeOption = options.querySelector('.selected');
         activeOption.classList.remove('selected');
       }
-      clicked.classList.add('selected');
-    });
+      clicked.classList.add('selected'); // Se le añade la clase al clickeado
+    }); 
   });
 }
 //// Give the same class to the unselected ones and remove the selected class.
@@ -129,7 +129,8 @@ function checkAnswer() {
     //InnerHtml returns the text content of an element (for saving the li's word)
     // Correct Answer = data.correct_answer
     if (selectedAnswer == correctAnswer) {
-      localStorage.setItem('aciertos', contador++);
+      localStorage.setItem('aciertos', contador + 1);
+      contador++;
       _result.innerHTML = `<b>Perfect!</b>`;
       _result.style.color = 'green';
     } else {
